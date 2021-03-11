@@ -1,24 +1,32 @@
 import React from 'react';
 import './Places.css';
 
-function Places(props) {
+function Destinations(props) {
 
     return(
-        <div className="places">
+        <div className="destinations">
             <table>
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Airport Name</th>
                         <th>Airport ID</th>
+                        <th>Airport Name</th>
+                        <th>Country ID</th>
+                        <th>Region ID</th>
+                        <th>City ID</th>
+                        <th>Country Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.places.map(place => {
                         return (<tr key={place.PlaceId}>
                             <th><button className="select">Select</button></th>
-                            <th>{place.PlaceName}</th>
                             <th>{place.PlaceId}</th>
+                            <th>{place.PlaceName}</th>
+                            <th>{place.CountryId}</th>
+                            <th>{place.RegionId}</th>
+                            <th>{place.CityId}</th>
+                            <th>{place.CountryName}</th>
                         </tr>)
                     })}
                 </tbody>

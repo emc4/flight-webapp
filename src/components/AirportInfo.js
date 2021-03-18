@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import './AirportInfo.css';
 import Places from './Places';
-import DatePicker from 'react-datepicker';
 
-import "react-datepicker/dist/react-datepicker.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AirportInfo() {
+
     const [places,setPlaces] = useState([])
+    const [destinations,setDestinations] = useState([])
+    const [dates,setDates] = useState([])
+    const [currencys,setCurrencys] = useState([])
+
     const [source,setSource] = useState("")
     const [destination,setDestination] = useState("")
     const [date,setDate] = useState("")
     const [currency,setCurrency] = useState("")
 
     const [showPlaces,setShowPlaces] = useState(false)
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -30,15 +33,26 @@ function AirportInfo() {
 
             //NOT WORKING!!
             let baseUrl = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/"
-            let slash = "/"
             let fullURL = baseUrl.concat(currency,"/en-US/?")
 
             let response = await fetch(fullURL + new URLSearchParams({query: source}), reqOptions)
 
             response = await response.json()
+
+
+            let output = await fetch(fullURL + new URLSearchParams({query: destination}), reqOptions)
+
+            output = await output.json()
+            console.log(output.Places)
             console.log(response.Places)
+            console.log(useState)
             setPlaces(response.Places)
-            console.log(places)
+            console.log("source" +places)
+
+            setDestinations(output.Places)
+            setDates(date)
+            setCurrencys(currency)
+            console.log("destination"+ destinations)
 
         }
         fetchMyAPI()
@@ -59,11 +73,10 @@ function AirportInfo() {
                 <input id="dateInput" value={date} onChange={e => setDate(e.target.value)} required/>
                 <label htmlFor="currencyInput"> Currency:</label>
                 <input id="currencyInput" value={currency} onChange={e => setCurrency(e.target.value)} required/>
-                {/* <label htmlFor="dateInput"> Departure Date:</label>
-                 <DatePicker id="dateInput" selected={date} dateFormat="yyyy-MM-dd" onChange={e => setDate(e)}  required/>*/}
                 <button className="search">Submit</button>
            </form>
-           { showPlaces ? <Places places={places}></Places> : <></>}
+           { showPlaces ? <Places places={places} destinations = {destinations} dates = {dates} currencys = {currencys}></Places> : <></>}
+
         </div>
     )
 }

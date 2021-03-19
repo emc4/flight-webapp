@@ -46,7 +46,7 @@ function Places(props) {
 
          response = await response.json()
 
-         setOutputs(response.Places)
+         setOutputs(response)
 
      }
      fetchMyAPI()
@@ -54,7 +54,12 @@ function Places(props) {
 
   }
   return(
-    <div className="places">
+    <div className="places" onChange={onChangeValue}>
+    <p>When you have selected the correct airports, press Submit</p>
+    <p>
+    Sumbit
+    <input type="radio" name="submit" onChange={e => setDestination(e.target.value)}/>
+    </p>
       <table name = "all">
         <thead>
           <tr>
@@ -62,9 +67,7 @@ function Places(props) {
             <th>Destination</th>
           </tr>
         </thead>
-        <tbody onChange={onChangeValue}>
-        <tr>Sumbit
-        <input type="radio" name="submit" onChange={e => setDestination(e.target.value)}/> </tr>
+        <tbody >
 
           <th>
             <table name = "source">
@@ -110,8 +113,8 @@ function Places(props) {
 
           </tbody>
         </table>
-        { showPlaces ? <Output outputs={outputs}></Output> : <></>}
-      
+        { showPlaces ? <Output info={outputs}></Output> : <></>}
+
 
       </div>
       )

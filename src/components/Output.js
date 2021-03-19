@@ -1,29 +1,58 @@
-import React, { useState} from 'react';
-import './Places.css';
+import React from 'react';
+
+import './Outputs.css';
 
 function Output(props) {
-  const [showPlaces,setShowPlaces] = useState(false)
+  const flight = props.info
+  const flightQuotes = flight.Quotes
+  const flightSource = flight.Places
+  const flightDestination = flight.Places
+  const flightCurrency = flight.Currencies
 
-
+  const flightCarriers = flight.Carriers
+  console.log(props.info)
+  console.log(flight)
+  if(!flightQuotes){
     return(
-        <div className="output">
-            <table>
+      <div className="output">
+              There are no flights between these locations
+
+      </div>
+    )
+  }
+
+ let carriersMap = new Map()
+  for(let i = 0; i < flightCarriers.length; i++){
+    carriersMap.set(flightCarriers[i].CarrierId, flightCarriers[i].Name)
+  }
+
+  console.log(carriersMap)
+
+  console.log(flightQuotes)
+    return(
+        <div className="out">
+        <p>Flights from {flightSource[0].Name} to {flightDestination[1].Name}</p>
+        <p>Sorted by Price Low to High</p>
+            <table >
                 <thead>
                     <tr>
                         <th>Cost</th>
-                        <th>Date</th>
+                        <th>Date (yyyy/mm/dd)</th>
                         <th>Carrier</th>
+
                     </tr>
                 </thead>
-                <tbody>
-                    {props.outputs.map(output => {
-                        return (<tr key={output.QuoteId}>
-                            <th>{output.Price}</th>
-                            <th>{output.Name}</th>
-                            <th>{output.DepartureDate}</th>
-                        </tr>)
+                <tbody class = "output">
+
+                  {flightQuotes.map(quote => {
+                    return (<tr key={quote.QuoteId}>
+                      <th>{flightCurrency[0].Symbol}{quote.MinPrice}</th>
+                      <th>{quote.OutboundLeg.DepartureDate.substring(0,10)}</th>
+                      <th>{carriersMap.get(quote.OutboundLeg.CarrierIds[0])}</th>
+
+                    </tr>)
                     })}
-                </tbody>
+            </tbody>
             </table>
          </div>
     )

@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header title="Flight Finder"></Header>
       <AirportInfo></AirportInfo>
-      <Footer title="2020"></Footer>
+      <Footer title="Emily Cohen 2021"></Footer>
     </div>
   );
 }

@@ -17,10 +17,10 @@ function Output(props) {
                 </thead>
                 <tbody>
                     {props.outputs.map(output => {
-                        return (<tr key={output.QuotesID}>
-                            <th>{output.Quotes}</th>
-                            <th>{output.Carriers}</th>
-                            <th>{output.Dates}</th>
+                        return (<tr key={output.QuoteId}>
+                            <th>{output.Price}</th>
+                            <th>{output.Name}</th>
+                            <th>{output.DepartureDate}</th>
                         </tr>)
                     })}
                 </tbody>

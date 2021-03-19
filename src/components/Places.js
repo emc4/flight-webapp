@@ -9,7 +9,7 @@ function Places(props) {
   const [source,setSource] = useState("")
 
   const [showPlaces,setShowPlaces] = useState(false)
-  const [places,setPlaces] = useState([])
+  const [outputs,setOutputs] = useState([])
 
 
   function onChangeValue(e) {
@@ -46,7 +46,7 @@ function Places(props) {
 
          response = await response.json()
 
-         setPlaces(response.Places)
+         setOutputs(response.Places)
 
      }
      fetchMyAPI()
@@ -110,7 +110,8 @@ function Places(props) {
 
           </tbody>
         </table>
-        { showPlaces ? <Output outputs={places}></Output> : <></>}
+        { showPlaces ? <Output outputs={outputs}></Output> : <></>}
+      
 
       </div>
       )

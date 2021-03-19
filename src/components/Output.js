@@ -12,11 +12,10 @@ function Output(props) {
   const flightCarriers = flight.Carriers
   console.log(props.info)
   console.log(flight)
-  if(!flightQuotes){
+  if(!flightQuotes || !flightSource || !flightDestination || !flightCurrency){
     return(
       <div className="output">
               There are no flights between these locations
-
       </div>
     )
   }
@@ -37,18 +36,22 @@ function Output(props) {
                 <thead>
                     <tr>
                         <th>Cost</th>
-                        <th>Date (yyyy/mm/dd)</th>
-                        <th>Carrier</th>
+                        <th>Departure Date (yyyy/mm/dd)</th>
+                        <th>Departure Carrier</th>
+                        <th>Return Date (yyyy/mm/dd)</th>
+                        <th>Return Carrier</th>
 
                     </tr>
                 </thead>
-                <tbody class = "output">
+                <tbody className = "output">
 
                   {flightQuotes.map(quote => {
                     return (<tr key={quote.QuoteId}>
                       <th>{flightCurrency[0].Symbol}{quote.MinPrice}</th>
                       <th>{quote.OutboundLeg.DepartureDate.substring(0,10)}</th>
                       <th>{carriersMap.get(quote.OutboundLeg.CarrierIds[0])}</th>
+                      <th>{quote.InboundLeg.DepartureDate.substring(0,10)}</th>
+                      <th>{carriersMap.get(quote.InboundLeg.CarrierIds[0])}</th>
 
                     </tr>)
                     })}

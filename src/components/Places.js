@@ -40,7 +40,7 @@ function Places(props) {
          }
         let slash = "/"
         let baseUrl = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/'
-        let fullURL =  baseUrl.concat(props.currencys,"/en-US/", destination, slash, source, slash, props.dates)
+        let fullURL =  baseUrl.concat(props.currencys,"/en-US/", destination, slash, source, slash, props.dates, slash, props.returndates)
 
          let response = await fetch(fullURL, reqOptions)
 

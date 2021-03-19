@@ -8,11 +8,14 @@ function AirportInfo() {
     const [places,setPlaces] = useState([])
     const [destinations,setDestinations] = useState([])
     const [dates,setDates] = useState([])
+    const [returndates,setReturnDates] = useState([])
     const [currencys,setCurrencys] = useState([])
 
     const [source,setSource] = useState("")
     const [destination,setDestination] = useState("")
     const [date,setDate] = useState("")
+    const [returndate,setReturnDate] = useState("")
+
     const [currency,setCurrency] = useState("")
 
     const [showPlaces,setShowPlaces] = useState(false)
@@ -31,7 +34,6 @@ function AirportInfo() {
             }
             console.log("DATE" + date)
 
-            //NOT WORKING!!
             let baseUrl = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/"
             let fullURL = baseUrl.concat(currency,"/en-US/?")
 
@@ -51,6 +53,7 @@ function AirportInfo() {
 
             setDestinations(output.Places)
             setDates(date)
+            setReturnDates(returndate)
             setCurrencys(currency)
             console.log("destination"+ destinations)
 
@@ -59,23 +62,36 @@ function AirportInfo() {
         setShowPlaces(true)
         setSource("")
         setDate("")
+        setReturnDate("")
         setDestination("")
         setCurrency("")
     }
     return(
         <div className="airportinfo">
            <form onSubmit={handleSubmit}>
+              <div>
                 <label htmlFor="sourceInput"> Departure State or Country:</label>
                 <input id="sourceInput" value={source} onChange={e => setSource(e.target.value)} required/>
+                </div>
+                <div>
                 <label htmlFor="destinationInput"> Desitination State or Country:</label>
                 <input id="destinationInput" value={destination} onChange={e => setDestination(e.target.value)} required/>
+                </div>
+                <div>
                 <label htmlFor="dateInput"> Departure Date:</label>
-                <input id="dateInput" value={date} onChange={e => setDate(e.target.value)} required/>
+                <input id="dateInput" placeholder = "yyyy-mm-dd" value={date} onChange={e => setDate(e.target.value)} required/>
+                </div>
+                <div>
+                <label htmlFor="returndateInput"> Return Date:</label>
+                <input id="returndateInput" placeholder = "yyyy-mm-dd" value={returndate} onChange={e => setReturnDate(e.target.value)} required/>
+              </div>
+              <div>
                 <label htmlFor="currencyInput"> Currency:</label>
                 <input id="currencyInput" value={currency} onChange={e => setCurrency(e.target.value)} required/>
+              </div>
                 <button className="search">Submit</button>
            </form>
-           { showPlaces ? <Places places={places} destinations = {destinations} dates = {dates} currencys = {currencys}></Places> : <></>}
+           { showPlaces ? <Places places={places} destinations = {destinations} dates = {dates} returndates = {returndates} currencys = {currencys}></Places> : <></>}
 
         </div>
     )

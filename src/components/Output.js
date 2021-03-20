@@ -12,12 +12,14 @@ function Output(props) {
   const flightCarriers = flight.Carriers
   console.log(props.info)
   console.log(flight)
-  if(!flightQuotes || !flightSource || !flightDestination || !flightCurrency){
+  if(!flightQuotes || !flightSource || !flightDestination || !flightCurrency ||!flightSource[0]
+    ||!flightSource[1]||!flightDestination[0]||!flightDestination[1]){
     return(
-      <div className="output">
-              There are no flights between these locations
+      <div>
+              There are no flights between these locations on the specified dates
       </div>
     )
+    return null;
   }
 
  let carriersMap = new Map()
@@ -31,7 +33,6 @@ function Output(props) {
     return(
         <div className="out">
         <p>Flights from {flightSource[0].Name} to {flightDestination[1].Name}</p>
-        <p>Sorted by Price Low to High</p>
             <table >
                 <thead>
                     <tr>

@@ -5,12 +5,15 @@ import Places from './Places';
 
 function AirportInfo() {
 
+
+    //sets the values that will be passed to places
     const [places,setPlaces] = useState([])
     const [destinations,setDestinations] = useState([])
     const [dates,setDates] = useState([])
     const [returndates,setReturnDates] = useState([])
     const [currencys,setCurrencys] = useState([])
 
+    //sets the values that will be set when data entered
     const [source,setSource] = useState("")
     const [destination,setDestination] = useState("")
     const [date,setDate] = useState("")

@@ -5,24 +5,25 @@ import Output from './Output';
 
 function Places(props) {
   const [destination,setDestination] = useState("")
-
   const [source,setSource] = useState("")
-
-  const [showPlaces,setShowPlaces] = useState(false)
+  const [showOutput,setShowOutput] = useState(false)
   const [outputs,setOutputs] = useState([])
+  const sourceInfo = props.places
+  const destInfo = props.destinations
 
+  console.log(sourceInfo)
+  console.log(destInfo)
 
-  function onChangeValue(e) {
-
-    if((source !== "") && (destination !== "")){
-      nextPage(e)
-
-    }
-    console.log("Source" + source);
-    console.log("dest" + destination)
+  if(!destInfo || !sourceInfo){
+    return(
+      <div>
+      Invalid entry
+      </div>
+    )
   }
 
-  function nextPage(e)
+
+  function handleSubmit(e)
   {
 
      console.log("Run the next page!")
@@ -50,70 +51,34 @@ function Places(props) {
 
      }
      fetchMyAPI()
-     setShowPlaces(true)
+     setShowOutput(true)
 
   }
   return(
-    <div className="places" onChange={onChangeValue}>
-    <p>When you have selected the correct airports, press Submit</p>
-    <p>
-    Sumbit
-    <input type="radio" name="submit" onChange={e => setDestination(e.target.value)}/>
-    </p>
-      <table name = "all">
-        <thead>
-          <tr>
-            <th>Source</th>
-            <th>Destination</th>
-          </tr>
-        </thead>
-        <tbody >
+    <div className="airportSelect">
+    <form onSubmit={handleSubmit}>
+      <select onChange={e => setSource(e.target.value)}>
+      <option value="none">—</option>
 
-          <th>
-            <table name = "source">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Airport Name</th>
-                  <th>Airport ID</th>
-                </tr>
-              </thead>
-              <tbody >
+        {sourceInfo.map(source =>{
+          return(
+            <option key = {source.PlaceId}  value = {source.PlaceId}>{source.PlaceName}</option>
+          )})}
+      </select>
+        <select onChange={e => setDestination(e.target.value)}>
+        <option value="none"></option>
 
-                {props.places.map(place => {
-                  return (<tr key={place.PlaceId}>
-                    <th><input type="radio" value={place.PlaceId} name="src" onChange={e => setSource(e.target.value)}/> </th>
-                    <th>{place.PlaceName}</th>
-                    <th>{place.PlaceId}</th>
-                  </tr>)
-                })}
-              </tbody>
-            </table>
-          </th>
-          <th>
-            <table name = "destination">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Airport Name</th>
-                  <th>Airport ID</th>
-                </tr>
-              </thead>
-              <tbody >
-                {props.destinations.map(destination => {
-                  return (<tr key={destination.PlaceId}>
-                    <th><input type="radio" value={destination.PlaceId} name="dest" onChange={e => setDestination(e.target.value)}/> </th>
-                    <th>{destination.PlaceName}</th>
-                    <th>{destination.PlaceId}</th>
-                  </tr>)
-                  })}
-                </tbody>
-              </table>
-            </th>
+          {destInfo.map(destination =>{
+            return(
+              <option key = {destination.PlaceId} value = {destination.PlaceId}>{destination.PlaceName}</option>
+            )})}
+        </select>
+        <button className="search">Submit</button>
 
-          </tbody>
-        </table>
-        { showPlaces ? <Output info={outputs}></Output> : <></>}
+      </form>
+
+        { showOutput ? <Output info={outputs}></Output> : <></>}
+
 
 
       </div>

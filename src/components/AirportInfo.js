@@ -74,7 +74,7 @@ function AirportInfo() {
           <input id="sourceInput" value={source} onChange={e => setSource(e.target.value)} required/>
         </div>
         <div>
-          <label htmlFor="destinationInput"> Desitination State or Country:</label>
+          <label htmlFor="destinationInput"> Destination State or Country:</label>
           <input id="destinationInput" value={destination} onChange={e => setDestination(e.target.value)} required/>
         </div>
         <div>

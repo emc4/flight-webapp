@@ -68,31 +68,31 @@ function AirportInfo() {
   return(
     //Creates form with labels for user to enter flight options
     <div className="airportinfo">
-       <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="sourceInput"> Departure State or Country:</label>
-              <input id="sourceInput" value={source} onChange={e => setSource(e.target.value)} required/>
-            </div>
-            <div>
-              <label htmlFor="destinationInput"> Desitination State or Country:</label>
-              <input id="destinationInput" value={destination} onChange={e => setDestination(e.target.value)} required/>
-            </div>
-            <div>
-              <label htmlFor="dateInput"> Departure Date:</label>
-              <input id="dateInput" placeholder = "yyyy-mm-dd" value={date} onChange={e => setDate(e.target.value)} required/>
-            </div>
-            <div>
-              <label htmlFor="returndateInput"> Return Date:</label>
-              <input id="returndateInput" placeholder = "yyyy-mm-dd" value={returndate} onChange={e => setReturnDate(e.target.value)} required/>
-            </div>
-            <div>
-              <label htmlFor="currencyInput"> Currency:</label>
-              <input id="currencyInput" value={currency} onChange={e => setCurrency(e.target.value)} required/>
-            </div>
-            <button className="search">Submit</button>
-       </form>
-       { showPlaces ? <Places places={places} destinations = {destinations} dates = {dates} returndates = {returndates} currencys = {currencys}></Places> : <></>}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="sourceInput"> Departure State or Country:</label>
+          <input id="sourceInput" value={source} onChange={e => setSource(e.target.value)} required/>
+        </div>
+        <div>
+          <label htmlFor="destinationInput"> Desitination State or Country:</label>
+          <input id="destinationInput" value={destination} onChange={e => setDestination(e.target.value)} required/>
+        </div>
+        <div>
+          <label htmlFor="dateInput"> Departure Date:</label>
+          <input id="dateInput" placeholder = "yyyy-mm-dd" value={date} onChange={e => setDate(e.target.value)} required/>
+        </div>
+        <div>
+          <label htmlFor="returndateInput"> Return Date:</label>
+          <input id="returndateInput" placeholder = "yyyy-mm-dd" value={returndate} onChange={e => setReturnDate(e.target.value)} required/>
+        </div>
+        <div>
+          <label htmlFor="currencyInput"> Currency:</label>
+          <input id="currencyInput" value={currency} onChange={e => setCurrency(e.target.value)} required/>
+        </div>
+        <button className="search">Submit</button>
+      </form>
+      { showPlaces ? <Places places={places} destinations = {destinations} dates = {dates} returndates = {returndates} currencys = {currencys}></Places> : <></>}
     </div>
-    )
+  )
 }
 export default AirportInfo;

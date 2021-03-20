@@ -45,13 +45,13 @@ function Output(props) {
           </thead>
           <tbody className = "output">
             {flightQuotes.map(quote => {
-              return (<tr key={quote.QuoteId}>
-                <th>{flightCurrency[0].Symbol}{quote.MinPrice}</th>
-                <th>{quote.OutboundLeg.DepartureDate.substring(0,10)}</th>
-                <th>{carriersMap.get(quote.OutboundLeg.CarrierIds[0])}</th>
-                <th>{quote.InboundLeg.DepartureDate.substring(0,10)}</th>
-                <th>{carriersMap.get(quote.InboundLeg.CarrierIds[0])}</th>
-              </tr>)
+            return (<tr key={quote.QuoteId}>
+              <th>{flightCurrency[0].Symbol}{quote.MinPrice}</th>
+              <th>{quote.OutboundLeg.DepartureDate.substring(0,10)}</th>
+              <th>{carriersMap.get(quote.OutboundLeg.CarrierIds[0])}</th>
+              <th>{quote.InboundLeg.DepartureDate.substring(0,10)}</th>
+              <th>{carriersMap.get(quote.InboundLeg.CarrierIds[0])}</th>
+            </tr>)
             })}
           </tbody>
         </table>

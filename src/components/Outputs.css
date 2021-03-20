@@ -6,10 +6,15 @@ table {
     border-collapse: collapse;
 }
 
-.output tr:first-child { background: yellow }
+.output tr:first-child { background: #6E7DAB }
 
+thead{
+  font-weight: bolder;
+}
 td, th {
+  font-weight: normal;
     border: 1px solid #999;
     padding: 0.5rem;
+    padding: 3px;
     text-align: left;
 }

@@ -2,7 +2,6 @@
     width: 90%;
     margin: 0 auto;
     padding: 20px;
-    border: 1px dotted black;
     height: 80vh;
     overflow-y: auto;
     display: flex;
@@ -12,30 +11,37 @@
 
 form {
     display: flex;
+    padding: 20px 20px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    line-height:40px;
 }
 
 .search {
-    background-color: #008140;
-    padding: 20px 20px;
-    height: 10px;
+    background-color: #5762D5;
+    height: 6px;
     color: white;
-    border-radius: 12px;
+    border-radius: 8px;
     display: block;
-    line-height: 0px;
-    font-size: 16px;
+    line-height: 40px;
+    font-size: 14px;
+    margin-left: 20px;
+
 }
 
 label {
     font-size: 20px;
+    line-height: 40px;
+    padding-right: 5px;
+    padding-left: 30px;
+
 }
 
 
 #queryInput {
     box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
     border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
+    padding: 20px;
+    margin: 20px;
 }

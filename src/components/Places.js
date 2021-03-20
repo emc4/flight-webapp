@@ -40,7 +40,8 @@ function Places(props) {
       //sets up URL for API call using the variables passed by props
       let slash = "/"
       let baseUrl = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/'
-      let fullURL =  baseUrl.concat(props.currencys,"/en-US/", destination, slash, source, slash, props.dates, slash, props.returndates)
+      let fullURL =  baseUrl.concat(props.currencys,"/en-US/", destination,
+        slash, source, slash, props.dates, slash, props.returndates)
 
       //stores result from API call to get flights
       let response = await fetch(fullURL, reqOptions)
@@ -59,7 +60,8 @@ function Places(props) {
   return(
     <div className="airportSelect">
       <form onSubmit={handleSubmit}>
-        <div>Source
+        <div>
+          <label> Source:</label>
           <select onChange={e => setSource(e.target.value)}>
             <option value="none"></option>
               {sourceInfo.map(source =>{
@@ -69,7 +71,8 @@ function Places(props) {
                 )})}
           </select>
         </div>
-        <div>Destination
+        <div>
+          <label> Destination:</label>
           <select onChange={e => setDestination(e.target.value)}>
             <option value="none"></option>
               {destInfo.map(destination =>{
